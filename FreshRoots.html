@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">import React, { useState, useEffect } from "react";</p>
+<p class="p1">import { useRouter } from "next/router";</p>
+<p class="p1">import { Button } from "@/components/ui/button";</p>
+<p class="p1">import { Card, CardContent } from "@/components/ui/card";</p>
+<p class="p1">import { Input } from "@/components/ui/input";</p>
+<p class="p2"><br></p>
+<p class="p1">const initialProducts = [</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Organic Tomatoes", desc: "Fresh, seasonal, and local." },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Farm Fresh Bananas", desc: "Sweet, ripe, and pesticide-free." },</p>
+<p class="p1"><span class="Apple-converted-space">  </span>{ name: "Green Spinach", desc: "Leafy, nutritious, and local." },</p>
+<p class="p1">];</p>
+<p class="p2"><br></p>
+<p class="p1">export default function FreshRootsHome() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [products, setProducts] = useState(initialProducts);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [email, setEmail] = useState("");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const [formStatus, setFormStatus] = useState&lt;"idle" | "success" | "error"&gt;("idle");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const router = useRouter();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Simulate fetching products from an API</p>
+<p class="p1"><span class="Apple-converted-space">  </span>useEffect(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setProducts([</p>
+<p class="p1"><span class="Apple-converted-space">        </span>...initialProducts,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{ name: "Fresh Carrots", desc: "Crunchy and sweet, direct from farms." },</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{ name: "Juicy Mangoes", desc: "Seasonal delight, organically grown." },</p>
+<p class="p1"><span class="Apple-converted-space">      </span>]);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}, []);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>const handleFormSubmit = (e: React.FormEvent) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>e.preventDefault();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (email) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setFormStatus("success");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setEmail("");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>setFormStatus("error");</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setTimeout(() =&gt; setFormStatus("idle"), 3000);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div className="min-h-screen bg-[#F7F5F2] text-[#2F2F2F]"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section className="bg-green-100 p-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1 className="text-4xl font-bold text-green-800"&gt;FreshRoots&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p className="mt-2 text-xl text-green-700"&gt;Rooted in Nature, Delivered Fresh&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="mt-6 space-x-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>className="bg-green-600 hover:bg-green-700 text-white"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>onClick={() =&gt; router.push("/order")}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Order Now</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/Button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>variant="outline"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>onClick={() =&gt; router.push("/vendor")}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Join as Vendor</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/Button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section className="p-8 max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 className="text-2xl font-semibold mb-4"&gt;About Us&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>FreshRoots is your trusted partner for 100% organic and pesticide-free fruits and</p>
+<p class="p1"><span class="Apple-converted-space">          </span>vegetables, connecting Indian farmers with local vendors and households. We believe</p>
+<p class="p1"><span class="Apple-converted-space">          </span>in clean eating, sustainability, and fair trade.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section className="bg-white p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 className="text-2xl font-semibold mb-6 text-center"&gt;How It Works&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;CardContent className="p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="font-bold text-lg mb-2"&gt;1. Sourced from Organic Farms&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p&gt;We partner with certified organic farmers for pesticide-free produce.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/CardContent&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;CardContent className="p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="font-bold text-lg mb-2"&gt;2. Sorted &amp; Packed Fresh&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p&gt;All items are quality checked, cleaned, and packed with care.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/CardContent&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;CardContent className="p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;h3 className="font-bold text-lg mb-2"&gt;3. Delivered to You&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;p&gt;We deliver to vendors and homes across the city every day.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/CardContent&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section className="p-8 max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 className="text-2xl font-semibold mb-4"&gt;Popular Products&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{products.map((item, index) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;Card key={index}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;CardContent className="p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 className="font-semibold"&gt;{item.name}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-sm text-gray-500"&gt;{item.desc}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/CardContent&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/Card&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;section className="bg-green-50 p-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2 className="text-2xl font-semibold mb-4"&gt;Get in Touch&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p className="mb-4"&gt;Interested in partnering with us or ordering? Drop us a message!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;form className="flex justify-center gap-4 max-w-md mx-auto" onSubmit={handleFormSubmit}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Input</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type="email"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>placeholder="Your Email"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>className="flex-1"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>required</p>
+<p class="p1"><span class="Apple-converted-space">            </span>value={email}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>onChange={e =&gt; setEmail(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;Button type="submit" className="bg-green-600 text-white"&gt;Send&lt;/Button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{formStatus === "success" &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="mt-2 text-green-700"&gt;Thank you! We'll be in touch soon.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>{formStatus === "error" &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;p className="mt-2 text-red-600"&gt;Please enter a valid email.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;footer className="bg-green-800 text-white p-4 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;© 2025 FreshRoots. All rights reserved.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>);</p>
+<p class="p1">}</p>
+</body>
+</html>
